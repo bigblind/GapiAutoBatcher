@@ -1,0 +1,30 @@
+{
+  "name": "GapiAutoBatcher",
+  "version": "0.1.0",
+  "description": "Automatically bath Google javascript api calls when they are made within a short time interval.",
+  "main": "GapiAutoBatcher.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "keywords": [
+    "Google",
+    "API",
+    "gapi",
+    "batch"
+  ],
+  "author": "Frederik Creemers",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "karma": "^0.12.25",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.5",
+    "karma-mocha": "^0.1.9",
+    "karma-sinon": "^1.0.3",
+    "sinon": "^1.12.1"
+  }
+}
