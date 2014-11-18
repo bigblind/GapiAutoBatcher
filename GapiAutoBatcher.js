@@ -3,12 +3,13 @@ GapiAutoBatcher = function(config){
     return new GapiAutoBatcher(config);
   }
 
-  this.config = {}
+  config = config || {};
+  this.config = {};
 
   // set defaults
   for (var option in GapiAutoBatcher.defaults){
-    if (GapiAutoBatcher.hasOwnProperty(option)){
-      this.config[option] = config[option] || GapiAutoBatcher.defaults[option]
+    if (GapiAutoBatcher.defaults.hasOwnProperty(option)){
+      this.config[option] = config[option] || GapiAutoBatcher.defaults[option];
     }
   }
 }
@@ -17,4 +18,4 @@ GapiAutoBatcher = function(config){
 GapiAutoBatcher.defaults = {
   batchInterval: 50,
   maxWait: 100
-}
+};
