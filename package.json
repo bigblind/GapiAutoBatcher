@@ -4,11 +4,13 @@
   "description": "Automatically bath Google javascript api calls when they are made within a short time interval.",
   "main": "GapiAutoBatcher.js",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "serve": "python -m SimpleHTTPServer",
+    "server": "python -m SimpleHTTPServer"
   },
   "repository": {
     "type": "git",
-    "url": "."
+    "url": "https://github.com/bigblind/GapiAutoBatcher"
   },
   "keywords": [
     "Google",
