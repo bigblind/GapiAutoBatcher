@@ -19,6 +19,7 @@ setupGapi = function(){
   gapi.client.newBatch = sinon.spy(function(){
     return new MockGapi()
   });
+  initGapi();
 }
 
 describe('GapiAutoBatcher', function(){
@@ -142,4 +143,28 @@ describe('GapiAutoBatcher', function(){
     })
 
   });
+
+  describe("gapi", function(){
+    before(function(){
+      console.log("afterEach");
+      GapiAutoBatcher.gapi.listeners = [];
+      GapiAutoBatcher.gapi.resolved = false;
+    });
+
+    it("should resolve GapiAutoBatcher.gapi when initGapi is called.", function(){
+      var callback = sinon.spy();
+      GapiAutoBatcher.gapi.then(callback);
+      expect(callback.callCount).to.equal(0);
+      setupGapi();
+      expect(callback.callCount).to.equal(1);
+    });
+
+    it("should call the function passed to 'then' immediately when gapi is already loaded.", function(){
+      setupGapi();
+      var callback = sinon.spy();
+      GapiAutoBatcher.gapi.then(callback);
+      expect(callback.callCount).to.equal(1);
+    });
+  })
 })
+

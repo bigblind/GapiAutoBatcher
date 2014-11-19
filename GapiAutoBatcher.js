@@ -48,8 +48,30 @@ GapiAutoBatcher = function(config){
 
 }
 
-
 GapiAutoBatcher.defaults = {
   batchInterval: 50,
   maxWait: 100
 };
+
+GapiAutoBatcher.gapi = {
+  listeners: [],
+  resolved: false,
+  then: function(f){
+    console.log("called and resolved="+this.resolved);
+    if(this.resolved){
+      f();
+      return;
+    }
+    this.listeners.push(f);
+  },
+  resolve: function(){
+    this.resolved = true;
+    for(var i=0; i<this.listeners.length; i++){
+      this.listeners[i]();
+    }
+  }
+}
+
+function initGapi(){
+  GapiAutoBatcher.gapi.resolve();
+}
