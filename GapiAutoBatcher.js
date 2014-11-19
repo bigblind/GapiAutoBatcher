@@ -1,3 +1,4 @@
+
 GapiAutoBatcher = function(config){
 
 
@@ -68,6 +69,10 @@ GapiAutoBatcher.gapi = {
   }
 }
 
-function initGapi(){
+initGapi = function(){
   GapiAutoBatcher.gapi.resolve();
+}
+
+if(window.gapi && gapi.client){
+  initGapi();
 }

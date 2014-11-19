@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <style>
+        header, footer{
+            background-color: #EEEEEE;
+        }
+
+        header, section, footer{
+            padding: 1em 5em;
+            margin: 0;
+        }
+
+        button{
+            color:white;
+            background-color:#5757CF;
+            border-radius:5px;
+            padding:2px;
+            border:0;
+            font-size:1.2em;
+        }
+        button[disabled]{
+            background-color:#8080FF;
+        }
+        button:focus {outline:0;border:1px solid #3333FF}
+
+        .half{
+            float:left;
+            width:50%;
+        }
+
+        .cb{
+            clear:both;
+            border-bottom:1px solid #333333;
+        }
+
+    </style>
+    <title>GapiAutoBatcher.js Example</title>
+    <script>
+
+    </script>
+    <script src="GapiAutoBatcher.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=initGapi"></script>
+</head>
+<body>
+    <header>
+        <h1>GapiAutoBatcher Example</h1>
+    </header>
+    <section id="multishorten">
+        <h2>Multi URL shortener.</h2>
+        <div class="half">
+            <p><label for="urls">urls:</label></p>
+            <p><textarea cols="75" rows="5" id="urls" wrap="hard"></textarea></p>
+            <p><button id="shorten" disabled>shorten</button></p>
+        </div>
+        <div class="half">
+            <p>Result:</p>
+            <ul id="shortlist">
+
+            </ul>
+        </div>
+        <div class="cb"></div>
+    </section>
+    <script>
+        clearShortlist = function(){
+            var sl = document.getElementById('shortlist');
+            while (sl.firstChild){
+                sl.removeChild(sl.firstChild);
+            }
+        }
+        createLi = function(url){
+            var sl = document.getElementById('shortlist');
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            a.href = url;
+            a.innerText = url;
+            li.appendChild(a);
+            sl.appendChild(li);
+        }
+        GapiAutoBatcher.gapi.then(function(){
+            gapi.client.load("urlshortener", "v1").then(function() {
+                var shorten = document.getElementById("shorten");
+                var batcher = new GapiAutoBatcher();
+                shorten.disabled = false;
+                shorten.addEventListener("click", function(){
+                    var urls = document.getElementById("urls").value.split("\n");
+                    clearShortlist();
+                    for(var i=0; i<urls.length; i++){
+                        req = gapi.client.urlshortener.url.insert({longUrl: urls[i]});
+                        req.then(function(r){
+                            createLi(r.result.id)
+                        }, function(e){
+                            alert("something went wrong, see console for details.");
+                            console.log(e);
+                        });
+                        batcher.call(req);
+                    }
+                });
+
+            });
+        })
+    </script>
+</body>
+</html>
