@@ -1,14 +1,11 @@
 MockGapi = function(){
   var functions = [];
   this.add = function(f){
-    console.log("added request to batch.");
     functions.push(f)
   }
   this.execute = function(){
-    console.log("execute called")
     for (var i=0; i<functions.length; i++){
       functions[i]();
-      console.log(functions[i])
     }
   }
 }
@@ -146,7 +143,6 @@ describe('GapiAutoBatcher', function(){
 
   describe("gapi", function(){
     before(function(){
-      console.log("afterEach");
       GapiAutoBatcher.gapi.listeners = [];
       GapiAutoBatcher.gapi.resolved = false;
     });

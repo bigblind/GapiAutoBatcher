@@ -37,11 +37,8 @@ GapiAutoBatcher = function(config){
     }
     var delay = this.config.batchInterval;
     var elapsed = Date.now() - started;
-    console.log("elapsed: " + elapsed);
     if (elapsed + delay > this.config.maxWait){
-      console.log("delay too long: " + elapsed + " + " + delay + " > " + this.config.maxWait);
       delay = this.config.maxWait - elapsed;
-      console.log("new delay " + delay);
     }
     timeout = setTimeout(callBatch, delay);
   }
@@ -57,7 +54,6 @@ GapiAutoBatcher.gapi = {
   listeners: [],
   resolved: false,
   then: function(f){
-    console.log("called and resolved="+this.resolved);
     if(this.resolved){
       f();
       return;
