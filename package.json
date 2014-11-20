@@ -6,7 +6,8 @@
   "scripts": {
     "test": "karma start",
     "serve": "python -m SimpleHTTPServer",
-    "server": "python -m SimpleHTTPServer"
+    "server": "python -m SimpleHTTPServer",
+    "uglify": "uglifyjs GapiAutoBatcher.js -o GapiAutoBatcher.min.js -m -r=\"GapiAutoBatcher,initGapi,GapiAutoBatcher.config,GapiAutoBatcher.defaults,GapiAutoBatcher.gapi,GapiAutoBatcher.call\" -c unsafe,pure_getters"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "karma-chrome-launcher": "^0.1.5",
     "karma-mocha": "^0.1.9",
     "karma-sinon": "^1.0.3",
-    "sinon": "^1.12.1"
+    "sinon": "^1.12.1",
+    "uglify-js": "^2.4.15"
   }
 }

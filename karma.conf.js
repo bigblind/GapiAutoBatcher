@@ -3,7 +3,8 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai', 'sinon'],
     browsers: ['Chrome'],
     files: [
-      '*.js'
+      'GapiAutoBatcher.js',
+      'tests.js'
     ]
   });
 };

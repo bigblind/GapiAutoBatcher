@@ -60,4 +60,4 @@ Batch the request passed in to be executed
  - `npm test` - Starts the karma test runner, watching the directory for changes.
  - `npm serve` - If you have python installed, this command starts a simple web server that serves this project. Google's javascript api's don't work in a html file on the `file://` protocol, so run this to view example.html
  - `npm server` - alias of `npm serve`.
-
+ - `npm uglify` - runs UglifyJs 2 to produce GapiAutoBatcher.min.js

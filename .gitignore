@@ -30,3 +30,5 @@
 *.iws
 
 git-debug.log
+
+GapiAutoBatcher.min.js
