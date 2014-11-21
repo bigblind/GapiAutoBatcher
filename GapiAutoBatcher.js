@@ -36,12 +36,16 @@ GapiAutoBatcher = function(config){
     if (timeout){
       clearTimeout(timeout);
     }
+
     var delay = this.config.batchInterval;
     var elapsed = Date.now() - started;
     if (elapsed + delay > this.config.maxWait){
       delay = this.config.maxWait - elapsed;
     }
+
     timeout = setTimeout(callBatch, delay);
+
+    return request;
   }
 
 }

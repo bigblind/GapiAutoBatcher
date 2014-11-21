@@ -45,6 +45,8 @@ constructs a new autobatcher
    - **batchInterval** - If a request is called within `batchInterval` milliseconds of the previous one, it is included in the batch.
    - **maxWait** - the maximum number of miliseconds any request can wait before it has to be executed.
 
+**returns** the original request, so you can chain `request.then()` to this call.
+
 You can change any of these configuration options by changing properties of `GapiAutoBatcher.config`.
 
 ### GapiAutoBatcher().call(request)

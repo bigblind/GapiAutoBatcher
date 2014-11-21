@@ -55,6 +55,19 @@ describe('GapiAutoBatcher', function(){
       clock.restore();
     });
 
+    it("should return the original request, so request.then() can be chained to it.", function(){
+      setupGapi();
+      var interval = 30;
+      var batcher = new GapiAutoBatcher({batchInterval: interval});
+      var request = sinon.spy();
+
+      var returned = batcher.call(request);
+
+      expect(request).to.equal(returned);
+
+    });
+
+
     it("should not execute a request passed in to call() before the necessary time has elapsed", function(){
       setupGapi();
       var interval = 30;
