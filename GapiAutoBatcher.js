@@ -17,9 +17,30 @@ GapiAutoBatcher = function(config){
     }
   }
 
+  var self = this;
+
   var batch = null;
   var timeout = null;
   var started = null;
+  var createBatch = function(){
+    started = Date.now()
+    batch = gapi.client.newBatch();
+  }
+
+  var delayBatch = function(){
+    if (timeout){
+      clearTimeout(timeout);
+    }
+
+    var delay = self.config.batchInterval;
+    var elapsed = Date.now() - started;
+    if (elapsed + delay > self.config.maxWait){
+      delay = self.config.maxWait - elapsed;
+    }
+
+    timeout = setTimeout(callBatch, delay);
+  }
+
   var callBatch = function(){
     batch.execute();
     batch = null;
@@ -27,23 +48,12 @@ GapiAutoBatcher = function(config){
 
   this.call = function(request){
     if (batch == null){
-      started = Date.now()
-      batch = gapi.client.newBatch();
+      createBatch();
     }
 
     batch.add(request);
 
-    if (timeout){
-      clearTimeout(timeout);
-    }
-
-    var delay = this.config.batchInterval;
-    var elapsed = Date.now() - started;
-    if (elapsed + delay > this.config.maxWait){
-      delay = this.config.maxWait - elapsed;
-    }
-
-    timeout = setTimeout(callBatch, delay);
+    delayBatch();
 
     return request;
   }
