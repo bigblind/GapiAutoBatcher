@@ -49,7 +49,10 @@ GapiAutoBatcher = function(config){
   }
 
   this.execute = function(request){
-    console.log("executing request");
+    //Temporary fix for a big in Google's js sdk.
+    //TODO(frederikcreemers@gmail.com): remove this as soon as I've had a reply at: https://code.google.com/p/google-api-javascript-client/issues/detail?can=2&start=0&num=100&q=&colspec=ID%20Type%20Status%20Priority%20Milestone%20Owner%20Summary&groupby=&sort=&id=173
+    request.then(function(){});
+
     if (batch == null){
       createBatch();
     }
