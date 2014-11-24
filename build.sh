@@ -1,0 +1,1 @@
+uglifyjs GapiAutoBatcher.js -o GapiAutoBatcher.min.js -m -r=\"GapiAutoBatcher,initGapi,GapiAutoBatcher.config,GapiAutoBatcher.defaults,GapiAutoBatcher.gapi,GapiAutoBatcher.call\" -c unsafe,pure_getters

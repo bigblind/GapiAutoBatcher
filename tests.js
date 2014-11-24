@@ -38,7 +38,7 @@ describe('GapiAutoBatcher', function(){
 
   });
 
-  describe("call", function(){
+  describe("execute", function(){
     it("should execute a request passed to call() after config.batchInterval, if " +
         "no other request is passed in within  that time.", function(){
       setupGapi();
@@ -47,7 +47,7 @@ describe('GapiAutoBatcher', function(){
       var clock = sinon.useFakeTimers();
       var request = sinon.spy();
 
-      batcher.call(request);
+      batcher.execute(request);
       clock.tick(interval);
 
       expect(request.callCount).to.equal(1);
@@ -61,7 +61,7 @@ describe('GapiAutoBatcher', function(){
       var batcher = new GapiAutoBatcher({batchInterval: interval});
       var request = sinon.spy();
 
-      var returned = batcher.call(request);
+      var returned = batcher.execute(request);
 
       expect(request).to.equal(returned);
 
@@ -75,6 +75,7 @@ describe('GapiAutoBatcher', function(){
       var clock = sinon.useFakeTimers();
 
       var request = sinon.spy();
+      batcher.execute(request);
 
       clock.restore();
       expect(request.callCount).to.equal(0);
@@ -88,9 +89,9 @@ describe('GapiAutoBatcher', function(){
       var request1 = sinon.spy();
       var request2 = sinon.spy();
 
-      batcher.call(request1);
+      batcher.execute(request1);
       clock.tick(29);
-      batcher.call(request2);
+      batcher.execute(request2);
       clock.tick(31);
 
       expect(request1.callCount).to.equal(1);
@@ -106,9 +107,9 @@ describe('GapiAutoBatcher', function(){
       var request1 = sinon.spy();
       var request2 = sinon.spy();
 
-      batcher.call(request1);
+      batcher.execute(request1);
       clock.tick(29);
-      batcher.call(request2);
+      batcher.execute(request2);
       clock.tick(5);
 
       expect(request1.callCount).to.equal(0);
@@ -124,9 +125,9 @@ describe('GapiAutoBatcher', function(){
       var request1 = sinon.spy();
       var request2 = sinon.spy();
 
-      batcher.call(request1);
+      batcher.execute(request1);
       clock.tick(29);
-      batcher.call(request2);
+      batcher.execute(request2);
       clock.tick(21);
 
       expect(request1.callCount).to.equal(1);
@@ -142,9 +143,9 @@ describe('GapiAutoBatcher', function(){
       var request1 = sinon.spy();
       var request2 = sinon.spy();
 
-      batcher.call(request1);
+      batcher.execute(request1);
       clock.tick(31);
-      batcher.call(request2);
+      batcher.execute(request2);
       clock.tick(31);
 
       expect(request1.callCount).to.equal(1);

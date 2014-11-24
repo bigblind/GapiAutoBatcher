@@ -23,6 +23,7 @@ GapiAutoBatcher = function(config){
   var timeout = null;
   var started = null;
   var createBatch = function(){
+    console.log("creating a new batch");
     started = Date.now()
     batch = gapi.client.newBatch();
   }
@@ -44,9 +45,11 @@ GapiAutoBatcher = function(config){
   var callBatch = function(){
     batch.execute();
     batch = null;
+    console.log("executed batch");
   }
 
-  this.call = function(request){
+  this.execute = function(request){
+    console.log("executing request");
     if (batch == null){
       createBatch();
     }

@@ -5,9 +5,7 @@
   "main": "GapiAutoBatcher.js",
   "scripts": {
     "test": "karma start",
-    "serve": "python -m SimpleHTTPServer",
-    "server": "python -m SimpleHTTPServer",
-    "uglify": "uglifyjs GapiAutoBatcher.js -o GapiAutoBatcher.min.js -m -r=\"GapiAutoBatcher,initGapi,GapiAutoBatcher.config,GapiAutoBatcher.defaults,GapiAutoBatcher.gapi,GapiAutoBatcher.call\" -c unsafe,pure_getters"
+    "start": "python -m SimpleHTTPServer"
   },
   "repository": {
     "type": "git",

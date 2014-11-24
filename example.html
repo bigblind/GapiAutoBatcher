@@ -81,20 +81,19 @@
         GapiAutoBatcher.gapi.then(function(){
             gapi.client.load("urlshortener", "v1").then(function() {
                 var shorten = document.getElementById("shorten");
-                var batcher = new GapiAutoBatcher();
+                batcher = new GapiAutoBatcher();
                 shorten.disabled = false;
                 shorten.addEventListener("click", function(){
                     var urls = document.getElementById("urls").value.split("\n");
                     clearShortlist();
                     for(var i=0; i<urls.length; i++){
                         req = gapi.client.urlshortener.url.insert({longUrl: urls[i]});
-                        req.then(function(r){
+                        result = batcher.execute(req);
+                        result.then(function(r){
+                            console.log("then called with argument:");
+                            console.log(r);
                             createLi(r.result.id)
-                        }, function(e){
-                            alert("something went wrong, see console for details.");
-                            console.log(e);
                         });
-                        batcher.call(req);
                     }
                 });
 

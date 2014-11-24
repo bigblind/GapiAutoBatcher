@@ -49,17 +49,16 @@ constructs a new autobatcher
 
 You can change any of these configuration options by changing properties of `GapiAutoBatcher.config`.
 
-### GapiAutoBatcher().call(request)
+### GapiAutoBatcher().execute(request)
 
-Batch the request passed in to be executed
+Executes the request, adding it to a batch.
 
 #### arguments
 
  - **request** - the request to be batched.
 
-## npm commands
+## commands used during development
 
  - `npm test` - Starts the karma test runner, watching the directory for changes.
- - `npm serve` - If you have python installed, this command starts a simple web server that serves this project. Google's javascript api's don't work in a html file on the `file://` protocol, so run this to view example.html
- - `npm server` - alias of `npm serve`.
- - `npm uglify` - runs UglifyJs 2 to produce GapiAutoBatcher.min.js
+ - `npm start` - If you have python installed, this command starts a simple web server that serves this project. Google's javascript api's don't work in a html file on the `file://` protocol, so run this to view example.html
+ - `sh build.sh` - runs UglifyJs 2 to produce GapiAutoBatcher.min.js
