@@ -89,7 +89,7 @@ GapiAutoBatcher.gapi = {
   }
 }
 
-var initGapi = function(){
+window.initGapi = function(){
   GapiAutoBatcher.gapi.resolve();
 }
 

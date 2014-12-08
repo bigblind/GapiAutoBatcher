@@ -1,6 +1,6 @@
 {
   "name": "gapi-auto-batcher",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Automatically bath Google javascript api calls when they are made within a short time interval.",
   "main": "GapiAutoBatcher.js",
   "scripts": {
