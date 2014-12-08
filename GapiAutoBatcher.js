@@ -1,5 +1,5 @@
 
-GapiAutoBatcher = function(config){
+var GapiAutoBatcher = function(config){
 
 
   if(this === window){
