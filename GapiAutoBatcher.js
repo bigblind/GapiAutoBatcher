@@ -89,10 +89,17 @@ GapiAutoBatcher.gapi = {
   }
 }
 
-initGapi = function(){
+var initGapi = function(){
   GapiAutoBatcher.gapi.resolve();
 }
 
 if(window.gapi && gapi.client){
   initGapi();
 }
+
+(function(global){
+  if(global.module){
+    module.exports = GapiAutoBatcher;
+  }
+})
+
