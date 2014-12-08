@@ -90,7 +90,7 @@ window.GapiAutoBatcher.gapi = {
 }
 
 window.initGapi = function(){
-  GapiAutoBatcher.gapi.resolve();
+  window.GapiAutoBatcher.gapi.resolve();
 }
 
 if(window.gapi && gapi.client){
