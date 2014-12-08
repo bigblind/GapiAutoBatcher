@@ -1,5 +1,5 @@
 
-var GapiAutoBatcher = function(config){
+window.GapiAutoBatcher = function(config){
 
 
   if(this === window){
@@ -66,12 +66,12 @@ var GapiAutoBatcher = function(config){
 
 }
 
-GapiAutoBatcher.defaults = {
+window.GapiAutoBatcher.defaults = {
   batchInterval: 50,
   maxWait: 100
 };
 
-GapiAutoBatcher.gapi = {
+window.GapiAutoBatcher.gapi = {
   listeners: [],
   resolved: false,
   then: function(f){
